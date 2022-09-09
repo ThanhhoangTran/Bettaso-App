@@ -1,0 +1,95 @@
+extends base
+
+block content 
+    .blog 
+        .blog_heading.page_heading
+            h3 Blog Detail
+        .container 
+            .blog_container 
+                .blog_left 
+                    .blog_detail-createAt
+                        span.blog_detail-time= `${new Intl.DateTimeFormat('en-US', {month: 'long', day: 'numeric', year: 'numeric'}).format(post.createAt)}`
+                        - let sum = comments.length + comments.reduce((pre, cur)=>{return pre + cur.replies.length}, 0)
+                        span.blog_detail-cmt= `${sum} Comments `
+                        span.blog_detail-share Share
+                    .blog_detail-imageCover
+                        img(src=`/images/posts/${post.imageCover}`, alt="")
+                    h4.blog_detail-title= `${post.title}`
+                    .blog_detail-desc 
+                        -let paras = post.description.split('\\n');
+                        each para in paras
+                            p.blog_detail-sub= para 
+                    if(post.images.length > 0)
+                        .blog_detail-images 
+                            h3 Another Picture
+                            .blog_detail-images-boxs
+                                each image in post.images
+                                    img(src=`/images/posts/${image}`, alt="")
+                    .blog_detail-tag
+                        i(class="fa-solid fa-tag")
+                        each tag in post.category 
+                            a(href="")= `${tag.replace(tag[0], tag[0].toUpperCase())}`
+                    .blog_detail_author 
+                        img.image_author(src=`/images/users/${post.user.photo}`, alt=`${post.user.name}`)
+                        .author_desc 
+                            h4.author_name= `${post.user.name}` 
+                            p.author_maxim= `${post.user.maxim}`
+                    .blog_detail_comments 
+                        span.blog_detail_comments-total Comments
+                        ul.blog_detail_comment-box
+                            if(comments)
+                                each comment in comments
+                                    li
+                                        .comment_box
+                                            .comment_img
+                                                img(src=`/images/users/${comment.user.photo}`, alt=`${comment.user.name}`)
+                                            .blog_detail_comment-desc
+                                                span.blog_detail_comment-time= `${new Intl.DateTimeFormat('en-US', {month: 'long', day: 'numeric', year: 'numeric',  hour: 'numeric', minute: 'numeric', second: 'numeric'}).format(comment.createAt)}`
+                                                h4= `${comment.user.name}`
+                                                p= `${comment.comment}`
+                                                a(data-replies=`${comment._id}`)
+                                                    i(class="fa-solid fa-reply")
+                                                    | Reply
+                                        if(comment.replies.length > 0 )
+                                            ul.sub_comment
+                                                each replie in comment.replies
+                                                    li
+                                                        .comment_box
+                                                            .comment_img
+                                                                img(src=`/images/users/${replie.user.photo}`, alt="")
+                                                            .blog_detail_comment-desc
+                                                                span.blog_detail_comment-time= `${new Intl.DateTimeFormat('en-US', {month: 'long', day: 'numeric', year: 'numeric',  hour: 'numeric', minute: 'numeric', second: 'numeric'}).format(replie.createAt)}`
+                                                                h4= `${replie.user.name}`
+                                                                p= `${replie.comment}`
+                                                                a(data-replies=`${replie._id}`)
+                                                                    i(class="fa-solid fa-reply")
+                                                                    | Reply  
+                                                
+                    form.blog_detail_form(data-post=`${post._id}`)
+                        label(for="comment") Your comment
+                        .form_comment 
+                            img.comment_user(src=`/images/users/${user ? user.photo : "default.jpg"}`, alt="")
+                            input(type="text" id="comment")
+                        button.form_submit Post Comment
+
+
+                .blog_right 
+                    .blog_recent 
+                        h3 Recent Posts 
+                        ul.blog_recent_boxs 
+                            each recent in postRecent.slice(0,5)
+                                li.blog_recent_boxs-item 
+                                    span.blog_recent-item-time= `${recent.createAt.getDay()} ${new Intl.DateTimeFormat('en-US', {month: 'long'}).format(recent.createAt).slice(0,3)}`
+                                    a(href=`/blog/${recent.flag}`)= `${recent.title}`
+                           
+                    span.blog_line
+                    .blog_about.blog_recent
+                        h3 About Us 
+                        p Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni
+                    span.blog_line
+                    .blog_tag.blog_recent
+                        h3 Tags 
+                        .blog_tag_boxs 
+                            each tag in categorys
+                                a(href=`/blogs?category=${tag}`)= `${tag}`
+                    span.blog_line

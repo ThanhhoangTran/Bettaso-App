@@ -1,0 +1,34 @@
+.nav
+    .container
+        a.nav_logo(href='/')
+            img(src='/Icon.png' alt='')
+        ul.nav_menu
+            li
+                a.nav_menu--item(href='/') Home
+            li
+                a.nav_menu--item(href='') About
+            li
+                a.nav_menu--item(href='/store') Store
+            li
+                a.nav_menu--item(href='/blogs') Blog
+            li
+                a.nav_menu--item(href='/contact') Contact
+            li
+                a.nav_menu--item.view-cart.btn-rotate(href='/cart')
+                    i.fa-solid.fa-cart-shopping
+                    span 0
+            if user
+                li.nav-user
+                    a.nav__el(href='/me')
+                        img.nav__user-img(src=`/images/users/${user.photo}` alt=`Photo of ${user.name}`)
+                        span= `${user.name.split(' ')[0]}`
+                    a.btn.btn-border.btn-main.btn-logout Logout
+            else
+                li
+                    a.btn.btn-border.btn-rotate(href='/login') Login
+                li
+                    a.btn.btn-border.btn-main(href='') Register
+        
+        .hambuger
+            span.line
+        

@@ -1,0 +1,88 @@
+extends base
+
+mixin recommentItem(item)
+    .recommend_box-item(data-item=`${JSON.stringify(item)}`)
+        .recommend_box-item_header
+            img(src=`/images/foods/${item.images[0]}` alt='')
+            button
+                i.fa-solid.fa-cart-plus
+                | Add To Cart
+        .recommend_box-item_content
+            div
+                h3= `${item.name}`
+                label= `$${item.price}`
+            p #{item.description}
+
+block content 
+    .bg
+        .bg_content
+            p.bg_heading The most praired grourmet restaurant
+            h2.bg_title IN THE HEART OF WASHINGTON
+            p A place where food and coziness compliment each other.
+            p Call: 
+                a (0905)123-4553
+            button
+                a.btn.btn-main.book-now Book Online
+    .home_mix
+        .home_mix_content
+            .home_mix_title
+                h3 A mix of traditional and modern cuisine
+                p.home_mix_weight
+                    | While we stay true to the traditional recipes and the relaxed
+                    | atmosphere, our restaurant also aspires to constantly add
+                    | fusion-style.
+                p
+                    | “Bettaso restaurant is just like life: a working mix of old and new
+                    | approaches, but in culinary business.”
+                a(href='') About Us
+            p.home_mix_desc
+                | Error validating access token: The session has been invalidated
+                | because the user changed their password or Facebook has changed the
+                | session for security reasons.
+    .poster
+        .poster_box
+            img(src='./postcard-1.jpg' alt='')
+            .poster_centent
+                h2 starters
+                p
+                    | The start of any meal is so important... So brace your appetite,
+                    | while waiting for your main course. Our diverse and delicious
+                    | appetizers will help you with that!...
+        .poster_box
+            img(src='./postcard-2.jpg' alt='')
+            .poster_centent
+                h2 Main Courses
+                p
+                    | Bettaso's menu knows no borders and nationalities. At the core of our main courses roaster, we have the idea of a cosmopolitan, contemporary cuisine. So whether you'll pick a meat, fish or vegetarian main course, be sure that it will be universally good!...					
+        .poster_box
+            img(src='./postcard-3.jpg' alt='')
+            .poster_centent
+                h2 Desserts
+                p
+                    | That sweet taste of a dessert at the end of the meal... If you look forward to it too, then you're at the right place! Our menu has prolific choice of desserts. It can make even the prolific sweet tooth person happy! 
+        .poster_box
+            img(src='./postcard-4.jpg' alt='')
+            .poster_centent
+                h2 drinks
+                p
+                    | Refresh yourself while enjoying a flavorsome dinner or a lunch at our place. We at the Bettaso offer different beverages as well as spirits, and liquors!...
+    .recommend
+        .container
+            .recommend_content
+                p.recommend-heading Chef Recommends
+                p
+                    | Choose a perfect combination of main dish and wine, thanks to our
+                    | Chef’s specials
+            .recommend_box
+                each food in foods 
+                    +recommentItem(food)
+
+    .looking
+        img(src="../home-1.jpg", alt="")
+        .looking_content
+            h4 Looking for a gourmet experience?
+            h3 We have it all here!
+            p
+                | The team that works at our kitchen, values diversity. We can offer you
+                | a traditional dish with nouvelle ingredients!
+            h4 Mr. Simon Wicked            

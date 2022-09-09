@@ -1,0 +1,44 @@
+extends base
+block content 
+    .cart
+        .cart_heading.page_heading
+            h3 View Cart 
+        .container 
+            .cart_table 
+                .cart_list 
+                    table 
+                        tr.table_heading
+                            th.cart_list--product(colspan="3") Product 
+                            th.cart_list--price Price 
+                            th.cart_list--quantity Quantity 
+                            th.cart_list--total Total 
+                      
+                .cart_response 
+                    .cart_coupon 
+                        input.cart-input(type="text" placeholder="Enter coupon code")
+                        button.cart-button.apply_btn apply coupon 
+                    .cart_controls 
+                        button.cart-button.cart-update update cart 
+            .cart_summary 
+                .cart_shipping 
+                    h3 Calculate Shipping
+                    input.cart-input(type="text" placeholder="country")
+                    input.cart-input(type="text" placeholder="city")
+                    input.cart-input(type="text" placeholder="postcode / zip")
+                    button.cart-button Update totals
+                .cart_final 
+                    h3 Cart total 
+                    table 
+                        tr 
+                            td.cart_final--heading Cart Subtotal 
+                            td.cart_final--result.cart_final-total 124.93
+                        tr  
+                            td.cart_final--heading Discount 
+                            td.cart_final--result.cart_final-discount 0
+                        tr 
+                            td.cart_final--heading Shipping and Handing
+                            td.cart_final--result Free Shipping
+                        tr  
+                            td.cart_final--heading Order Total 
+                            td.cart_final--result.cart_final-final 124.93
+                    button.cart-button.btn-checkout process to checkout

@@ -1,0 +1,67 @@
+extends base
+block content
+    .me 
+        .container 
+            .me_left 
+                h3 Account 
+                .me_left-list 
+                    a.me_left-item.active
+                        i.icon(class="fa-solid fa-circle-user")
+                        |   Personal Information
+                    a.me_left-item 
+                        i.icon(class="fa-solid fa-lock")
+                        |   Login and Password
+                    a.me_left-item 
+                        i.icon(class="fa-solid fa-bag-shopping") 
+                        |   My Bookings 
+            .me_right 
+                h3.me_right-heading Personal Information
+                .me_right-avatar
+                    img(src=`images/users/${user.photo}`, alt="")
+                    .me_right-avatar-info 
+                        h4= `${user.name}`
+                        label(for="changeAva") Change Avatar
+                        input#changeAva(type="file", name="")
+                    span.labelAva= `${user.role == 'user'?'Customer': user.role.replace(user.role[0], user.role[0].toUpperCase())}`
+                .me_right_info
+                    h3 Account Information
+                    .me_right-info_groups 
+                        -let name = user.name.split(' ');
+                        .me_right-info-field 
+                            label(for="firstname") First Name 
+                            input#firstname(value=`${name.slice(0, name.length-1).join(' ')}` placeholder="Your first name")
+                        .me_right-info-field 
+                                label(for="lastname") Last Name 
+                                input#lastname(value=`${name[name.length-1]}` placeholder="Your last name")
+                    .me_right-info_groups 
+                        .me_right-info-field 
+                            label(for="gmail") Email Address
+                            input#gmail(value=`${user.email}` placeholder="Your email")
+                        .me_right-info-field 
+                            label(for="phone") Phone Number
+                            input#phone(value=`${user.phone}` placeholder="Your phone number")
+                    h3.notifi Notifications
+                    .me_right_notifications  
+                        input#receiveEmail(type="checkbox")
+                        label(for="receiveEmail") I want to receive Bettaso emails 
+                    .me_right_notifications  
+                        input#pushNotifi(type="checkbox")
+                        label(for="pushNotifi") Push Notifications
+                .me_status 
+                    button.btn-cancle Cancle
+                    .me_status_change 
+                        span
+                            i(class="fa-solid fa-check")
+                            | All Changes Saved
+                        button.btn-change Save Changes
+
+                
+            
+
+                    
+
+
+                        
+
+
+

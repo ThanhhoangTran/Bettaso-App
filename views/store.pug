@@ -1,0 +1,19 @@
+extends base
+
+block content 
+    .store
+        .contact_heading
+            h3 Our Store Page
+        .recommend_container
+            .container
+                .recommend__gellery
+                    i.list-icon(class="fa-solid fa-list-ul")
+                    span.represent Bugger
+                    ul
+                        li.active(data-gallery='bugger') Bugger
+                        li(data-gallery='noodle') Noodles
+                        li(data-gallery='drink') Drinks
+                        li(data-gallery='salas') Salas
+                        li(data-gallery='other') Other
+                .recommend_box
+                ul.pagination

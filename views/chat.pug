@@ -1,0 +1,11 @@
+extends base
+block content 
+    .container 
+        if(user)
+            h1 Chat 
+            form#chatForm
+                input#chat-input(type="text")
+                input#chat-user-name(type="hidden" value=`${user.name}`)
+                input#chat-user-id(type="hidden" value=`${user._id}`)
+                input(type="submit" value="Send")
+            #chat 

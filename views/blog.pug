@@ -1,0 +1,63 @@
+extends base
+
+mixin blogItem(item)
+    li.blog_boxs-item 
+        .blog-box_item--image
+            img(src=`/images/posts/${item.imageCover}`, alt="")
+        .blog_box-item--content 
+            .date-box
+                - let day = item.createAt.getDate()
+                .day= `${day >=10 ? day: '0'+day}`
+                .month= `${(new Intl.DateTimeFormat('en-US', {month: 'long'}).format(item.createAt)).slice(0, 3)}`
+            .blog_box-item-desc 
+                a(href=`/blog/${item.flag}`)= `${item.title}`
+                p= `${item.description.slice(0, 300)}...`
+        a(href=`/blog/${item.flag}`).btn-more Read More
+
+block content 
+    .blog 
+        .blog_heading.page_heading
+            h3 Blog Pages 
+        .container 
+            .blog_container 
+                .blog_left 
+                    ul.blog_boxs
+                        each post in posts 
+                            +blogItem(post)
+                    ul.blog_pagination 
+                        if(currentPage!=1)
+                            li 
+                                a.blog_pagination_prev(href=`/blogs?page=${currentPage - 1}&limit=4${category ? "&category="+category: ""}`) Prev
+                        - let n = 1
+                        while n <= total
+                            li 
+                                a(href=`/blogs?page=${n}&limit=4${category ? "&category="+category: ""}` class=`${n== currentPage? "active":""}`)= `${n}`
+                                -n++
+                        if(currentPage!=total)
+                            li
+                                a.blog_pagination_next(href=`blogs?page=${+currentPage + 1}&limit=4${category ? "&category="+category: ""}`) Next 
+
+
+                .blog_right 
+                    .blog_recent 
+                        h3 Recent Posts 
+                        ul.blog_recent_boxs 
+                            each post in postRecent.slice(0, 5) 
+                                li.blog_recent_boxs-item 
+                                    span.blog_recent-item-time= `${post.createAt.getDay()} ${new Intl.DateTimeFormat('en-US', {month: 'long'}).format(post.createAt).slice(0,3)}`
+                                    a(href=`/blog/${post.flag}`)= `${post.title}`
+                           
+                    span.blog_line
+                    .blog_about.blog_recent
+                        h3 About Us 
+                        p Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni
+                    span.blog_line
+                    .blog_tag.blog_recent
+                        h3 Tags 
+                        .blog_tag_boxs 
+                            each tag in categorys
+                                a(href=`/blogs?category=${tag}`)= `${tag}`
+                    span.blog_line
+
+
+                        
