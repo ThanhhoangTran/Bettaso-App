@@ -4755,8 +4755,6 @@ exports.fetchData = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
-var _notify = require("./notify");
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
@@ -4811,7 +4809,7 @@ var fetchData = /*#__PURE__*/function () {
 }();
 
 exports.fetchData = fetchData;
-},{"axios":"../../node_modules/axios/index.js","./notify":"notify.js"}],"store.js":[function(require,module,exports) {
+},{"axios":"../../node_modules/axios/index.js"}],"store.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5138,6 +5136,7 @@ var cartFinal = document.querySelector('.cart_final');
 var cartTotal = document.querySelector('.cart_final-total');
 var bookNow = document.querySelector('.book-now');
 var mePage = document.querySelector('.me');
+var register = document.querySelector('.register');
 sumViewCart.textContent = local.length;
 $(window).on("load", function () {
   $(".loader-wrapper").fadeOut("slow");
@@ -5162,6 +5161,32 @@ if (loginForm) {
     (0, _login.login)(email, password);
   });
   (0, _animation.showPassword)('#password', '.eye-open', '.eye-close');
+}
+
+if (register) {
+  var registerForm = document.querySelector('.register .form--register');
+
+  if (registerForm) {
+    registerForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var data = {
+        name: document.querySelector('#name').value,
+        email: document.querySelector('#email').value,
+        phone: document.querySelector('#phone').value,
+        password: document.querySelector('#password').value,
+        passwordConfirm: document.querySelector('#password-confirm').value
+      };
+      (0, _fetch.fetchData)('/api/users/signup', data, 'POST', function (res) {
+        (0, _notify.showAlert)('success', 'You have just create new account successfully', 2000);
+        window.setTimeout(function () {
+          location.reload(true);
+          location.assign('/');
+        }, 1000);
+      }, function (err) {
+        (0, _notify.showAlert)('error', err.response.data.message, 3000);
+      });
+    });
+  }
 }
 
 if (btnLogout) {
@@ -5442,7 +5467,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49722" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58587" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

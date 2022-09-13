@@ -15,6 +15,9 @@ body.loaded {
 a {
   text-decoration: none;
 }
+.ma-bt-lg {
+  margin-bottom: 3.5rem !important;
+}
 .page_heading {
   display: flex;
   justify-content: center;
@@ -756,15 +759,19 @@ li {
 }
 
 /* login  */
-.login_container {
+.register .contact_heading {
   margin-top: 80px;
-  height: 80vh;
+  background-image: url('../subheader-5.jpg');
+}
+.login .contact_heading {
+  margin-top: 80px;
+  background-image: url('../subheader-3.jpg');
+}
+.login_container {
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: sans-serif;
-  background-image: url('../subheader-1.jpg');
-  background-size: 100% 100%;
 }
 
 .login_container .login-form {

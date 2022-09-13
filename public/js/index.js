@@ -17,6 +17,7 @@ let cartFinal= document.querySelector('.cart_final');
 let cartTotal = document.querySelector('.cart_final-total');
 let bookNow = document.querySelector('.book-now');
 let mePage = document.querySelector('.me');
+let register = document.querySelector('.register');
 sumViewCart.textContent = local.length;
 $(window).on("load",function(){
      $(".loader-wrapper").fadeOut("slow");
@@ -40,6 +41,30 @@ if(loginForm){
         login(email, password);
     })
     showPassword('#password', '.eye-open', '.eye-close');
+}
+if(register){
+    let registerForm = document.querySelector('.register .form--register');
+    if(registerForm){
+        registerForm.addEventListener('submit', function(e){
+            e.preventDefault();
+            let data = {
+                name: document.querySelector('#name').value,
+                email: document.querySelector('#email').value,
+                phone: document.querySelector('#phone').value,
+                password: document.querySelector('#password').value,
+                passwordConfirm: document.querySelector('#password-confirm').value
+            }
+            fetchData('/api/users/signup', data, 'POST', (res)=>{
+                showAlert('success', 'You have just create new account successfully', 2000);
+                window.setTimeout(()=>{
+                    location.reload(true);
+                    location.assign('/');
+                }, 1000);
+            }, (err)=>{
+                showAlert('error', err.response.data.message, 3000);
+            })
+        });
+    }
 }
 if(btnLogout){
     btnLogout.addEventListener('click', function(e){

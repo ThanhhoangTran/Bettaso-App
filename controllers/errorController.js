@@ -11,7 +11,7 @@ const handleDuplicateFieldsDB = (err) => {
 };
 const handleValidationError = (err) => {
   let value = Object.values(err.errors).map((el) => el.message);
-  let message = `Validation error: ${value.join('. ')}`;
+  let message = value.join('. ');
   return new AppError(message, 400);
 };
 const handleJWTError = (err) =>

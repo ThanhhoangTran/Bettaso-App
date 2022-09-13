@@ -11,6 +11,7 @@ router.get('/blog/:flag', authController.isLoggedIn, viewController.getBlogDetai
 router.get('/store', authController.isLoggedIn, viewController.getLimit(Food), viewController.getStore);
 router.get('/contact',authController.isLoggedIn, viewController.getContact);
 router.get('/login', viewController.getFormLogin);
+router.get('/register', viewController.getFormRegister);
 router.get('/blogs', authController.isLoggedIn, viewController.getBlog);
 router.get('/cart', authController.isLoggedIn, viewController.getCart)
 router.get('/chat', authController.isLoggedIn, viewController.chat)

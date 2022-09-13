@@ -1,5 +1,4 @@
 import axios from 'axios';
-import {showAlert} from './notify'
 export const fetchData = async(url, data, method, control, handle)=>{
     try {
         const res = await axios({

@@ -47,7 +47,7 @@ const userSchema = new mongoose.Schema({
       validator: function (el) {
         return el === this.password; //abc === abc
       },
-      message: 'Password not exact ',
+      message: 'PasswordConfirm not exact to password',
     },
   },
   active: {

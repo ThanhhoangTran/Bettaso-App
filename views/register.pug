@@ -1,0 +1,29 @@
+extends base
+block content 
+    .register
+        .contact_heading
+            h3 Register Your Account
+        .login_container
+            .login-form
+                p Already have account ? 
+                    a(href='/login') Sign In
+                form.form--register
+                    .form-group
+                        label(for='name') Full Name 
+                        input#name(name='name' placeholder='Your name' required='')
+                    .form-group
+                        label(for='email') Email 
+                        input#email(type='email' name='email' placeholder='you@gmail.com' required='')
+                    .form-group
+                        label(for='phone') Phone Number
+                        input#phone(name='phone' placeholder='Your phone' required='')
+                    .form-group
+                        label(for='password') Password 
+                        input#password(type='password' name='password' placeholder='• • • • • • • •' required='' minlength='8')
+                        <i class="fa-solid fa-eye eye-open"></i>
+                        <i class="fa-solid fa-eye-slash eye-close"></i>
+                    .form-group.ma-bt-lg
+                        label.form__label(for='password-confirm') Confirm password
+                        input#password-confirm.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                    .form-group
+                        button.btn.btn-main.btn-border.xolac.btn-rotate Register

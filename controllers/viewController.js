@@ -32,7 +32,11 @@ exports.getFormLogin = (req, res, next)=>{
     title: 'Login Page'
   })
 }
-
+exports.getFormRegister = (req, res, next)=>{
+  res.status(200).render('register', {
+    title: 'Register Page'
+  })
+}
 exports.alerts = (req, res, next)=>{
   const {payment} = req.query;
   if (payment == 'success') {

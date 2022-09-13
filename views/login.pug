@@ -1,18 +1,20 @@
 extends base
 block content
-    .login_container
-        .login-form
-            h2 Login Your Account
-            p Already have account ? 
-                a(href='') Sign Up
-            form.form--login
-                .form-group
-                    label(for='email') Email 
-                    input#email(type='email' name='email' placeholder='you@gmail.com' required='')
-                .form-group
-                    label(for='password') Password 
-                    input#password(type='password' name='password' placeholder='• • • • • • • •' required='' minlength='8')
-                    <i class="fa-solid fa-eye eye-open"></i>
-                    <i class="fa-solid fa-eye-slash eye-close"></i>
-                .form-group
-                    button.btn.btn-main.btn-border.xolac.btn-rotate Login
+    .login 
+        .contact_heading
+            h3 Login Your Account
+        .login_container
+            .login-form
+                p Already have account ? 
+                    a(href='/register') Sign Up
+                form.form--login
+                    .form-group
+                        label(for='email') Email 
+                        input#email(type='email' name='email' placeholder='you@gmail.com' required='')
+                    .form-group
+                        label(for='password') Password 
+                        input#password(type='password' name='password' placeholder='• • • • • • • •' required='' minlength='8')
+                        <i class="fa-solid fa-eye eye-open"></i>
+                        <i class="fa-solid fa-eye-slash eye-close"></i>
+                    .form-group
+                        button.btn.btn-main.btn-border.xolac.btn-rotate Login
