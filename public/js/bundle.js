@@ -5141,10 +5141,7 @@ sumViewCart.textContent = local.length;
 $(window).on("load", function () {
   $(".loader-wrapper").fadeOut("slow");
   $("body").addClass("loaded");
-}); // window.addEventListener('load', function(e){
-//     document.querySelector('.loader-wrapper').classList.add('fadeOut');
-//     document.body.classList.add('loaded');
-// })
+});
 
 if (bookNow) {
   bookNow.addEventListener('click', function (e) {
@@ -5315,23 +5312,23 @@ if (viewCart) {
   });
   viewCart.querySelectorAll('.decrease').forEach(function (el) {
     el.addEventListener('click', function (e) {
-      var quantity = e.target.closest('tr').querySelector('.quantity-number');
+      var quantity = e.target.closest('tr').querySelectorAll('.quantity-number');
 
-      if (quantity.value != 0) {
-        quantity.value = quantity.value - 1;
+      if (quantity[0].value != 0) {
+        quantity[1].value = quantity[0].value = quantity[0].value - 1;
         var price = e.target.closest('tr').querySelector('.price');
-        e.target.closest('tr').querySelector('.price-total').textContent = (quantity.value * price.textContent).toFixed(2);
+        e.target.closest('tr').querySelector('.price-total').textContent = (quantity[0].value * price.textContent).toFixed(2);
       }
     });
   });
   viewCart.querySelectorAll('.increase').forEach(function (el) {
     el.addEventListener('click', function (e) {
-      var quantity = e.target.closest('tr').querySelector('.quantity-number');
+      var quantity = e.target.closest('tr').querySelectorAll('.quantity-number');
 
-      if (quantity.value < 100) {
-        quantity.value = +quantity.value + 1;
+      if (quantity[0].value < 100) {
+        quantity[1].value = quantity[0].value = +quantity[0].value + 1;
         var price = e.target.closest('tr').querySelector('.price');
-        e.target.closest('tr').querySelector('.price-total').textContent = (quantity.value * price.textContent).toFixed(2);
+        e.target.closest('tr').querySelector('.price-total').textContent = (quantity[0].value * price.textContent).toFixed(2);
       }
     });
   });
@@ -5467,7 +5464,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58587" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53784" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

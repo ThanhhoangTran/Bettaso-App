@@ -23,10 +23,6 @@ $(window).on("load",function(){
      $(".loader-wrapper").fadeOut("slow");
     $("body").addClass("loaded");
 });
-// window.addEventListener('load', function(e){
-//     document.querySelector('.loader-wrapper').classList.add('fadeOut');
-//     document.body.classList.add('loaded');
-// })
 if(bookNow){
     bookNow.addEventListener('click', function(e){
         e.preventDefault();
@@ -208,21 +204,22 @@ if(viewCart){
     });
     viewCart.querySelectorAll('.decrease').forEach(el=>{
         el.addEventListener('click', function(e){
-          let quantity = e.target.closest('tr').querySelector('.quantity-number');
-          if(quantity.value!=0){
-              quantity.value = quantity.value - 1;
+          let quantity = e.target.closest('tr').querySelectorAll('.quantity-number');
+          if(quantity[0].value!=0){
+            quantity[1].value = quantity[0].value = quantity[0].value - 1;
               let price =  e.target.closest('tr').querySelector('.price');
-              e.target.closest('tr').querySelector('.price-total').textContent = (quantity.value * price.textContent).toFixed(2);
+              e.target.closest('tr').querySelector('.price-total').textContent = (quantity[0].value * price.textContent).toFixed(2);
           }
         })
     })
     viewCart.querySelectorAll('.increase').forEach(el=>{
         el.addEventListener('click', function(e){
-            let quantity = e.target.closest('tr').querySelector('.quantity-number');
-            if(quantity.value < 100){
-                quantity.value = +quantity.value + 1;
+            let quantity = e.target.closest('tr').querySelectorAll('.quantity-number');
+            if(quantity[0].value < 100){
+                quantity[1].value = quantity[0].value = +quantity[0].value + 1;
+                
                 let price =  e.target.closest('tr').querySelector('.price');
-                e.target.closest('tr').querySelector('.price-total').textContent = (quantity.value * price.textContent).toFixed(2);
+                e.target.closest('tr').querySelector('.price-total').textContent = (quantity[0].value * price.textContent).toFixed(2);
             }
         })
     });
